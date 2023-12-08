@@ -112,14 +112,16 @@ func (s *Secret) decodeCRT(evt *tcell.EventKey) *tcell.EventKey {
 			if err != nil {
 				log.Fatal(err)
 			}
-			certFunc := map[string]string{}
-			certFunc["Issuer"] = cert.Issuer.CommonName
-			certFunc["Subject"] = cert.Subject.CommonName
-			certFunc["Start"] = cert.NotBefore.String()
-			certFunc["End"] = cert.NotAfter.String()
+			certFunc := []string{
+				"Subject: " + cert.Subject.CommonName,
+				"Issuer: " + cert.Issuer.CommonName,
+				"StartTime: " + cert.NotBefore.String(),
+				"EndTime: " + cert.NotAfter.String(),
+				"SignatureAlgorithm: " + cert.SignatureAlgorithm.String(),
+			}
 			certContent := ""
-			for k, v := range certFunc {
-				certContent += fmt.Sprintf("%s: %s\n", k, v)
+			for _, v := range certFunc {
+				certContent += fmt.Sprintf("%s\n", v)
 			}
 			d[k] = certContent
 		} else {
