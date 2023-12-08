@@ -152,6 +152,10 @@ func (h *Help) addExtras(extras map[string]string, col, size int) {
 func (h *Help) showNav() model.MenuHints {
 	return model.MenuHints{
 		{
+			Mnemonic:    "b",
+			Description: "Decode Base64",
+		},
+		{
 			Mnemonic:    "g",
 			Description: "Goto Top",
 		},

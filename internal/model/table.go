@@ -305,7 +305,7 @@ func hydrate(ns string, oo []runtime.Object, rr render.Rows, re Renderer) error 
 			return err
 		}
 	}
-
+	render.I = 0
 	return nil
 }
 
