@@ -31,8 +31,18 @@ func sanitizeEsc(s string) string {
 }
 
 func cpCmd(flash *model.Flash, v *tview.TextView) func(*tcell.EventKey) *tcell.EventKey {
+	// START
+	//this codes that add decode ca certificates and copy actions with trim space in strings.
+	var handleText string
+	for _, line := range strings.Split(v.GetText(true), "\n") {
+		line = strings.TrimSpace(line)
+		handleText = handleText + line + "\n"
+	}
+	// END
+
 	return func(evt *tcell.EventKey) *tcell.EventKey {
-		if err := clipboardWrite(sanitizeEsc(v.GetText(true))); err != nil {
+		//if err := clipboardWrite(sanitizeEsc(trimString)); err != nil {
+		if err := clipboardWrite(sanitizeEsc(handleText)); err != nil {
 			flash.Err(err)
 			return evt
 		}
