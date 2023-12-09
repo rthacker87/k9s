@@ -82,6 +82,7 @@ func (s *Secret) decodeCmd(evt *tcell.EventKey) *tcell.EventKey {
 	return nil
 }
 
+// do hand.
 func (s *Secret) decodeCRT(evt *tcell.EventKey) *tcell.EventKey {
 	path := s.GetTable().GetSelectedItem()
 	if path == "" {

@@ -151,9 +151,10 @@ func (h *Help) addExtras(extras map[string]string, col, size int) {
 
 func (h *Help) showNav() model.MenuHints {
 	return model.MenuHints{
+		// do hand.
 		{
 			Mnemonic:    "b",
-			Description: "Decode Base64",
+			Description: "Decode CA Certificates",
 		},
 		{
 			Mnemonic:    "g",
