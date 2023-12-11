@@ -43,8 +43,6 @@ const (
 	PhaseOOMKilled         = "OOMKilled"
 )
 
-var I = 0
-
 // Pod renders a K8s Pod to screen.
 type Pod struct {
 	Base
@@ -88,7 +86,6 @@ func (p Pod) ColorerFunc() ColorerFunc {
 // Header returns a header row.
 func (Pod) Header(ns string) Header {
 	h := Header{
-		HeaderColumn{Name: "NUM"},
 		HeaderColumn{Name: "NAMESPACE"},
 		HeaderColumn{Name: "NAME"},
 		HeaderColumn{Name: "VS"},
@@ -151,9 +148,7 @@ func (p Pod) Render(o interface{}, ns string, row *Row) error {
 	c, r := p.gatherPodMX(&po, pwm.MX)
 	phase := p.Phase(&po)
 	row.ID = client.MetaFQN(po.ObjectMeta)
-	I += 1
 	row.Fields = Fields{
-		strconv.Itoa(I),
 		po.Namespace,
 		po.ObjectMeta.Name,
 		computeVulScore(&po.Spec),
