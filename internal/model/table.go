@@ -21,6 +21,10 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 )
 
+// do hand.
+// count for table line.
+var LineCount = 0
+
 const initRefreshRate = 300 * time.Millisecond
 
 // TableListener represents a table model listener.
@@ -305,7 +309,9 @@ func hydrate(ns string, oo []runtime.Object, rr render.Rows, re Renderer) error 
 			return err
 		}
 	}
-	render.I = 0
+	// do hand.
+	LineCount = 0
+
 	return nil
 }
 
